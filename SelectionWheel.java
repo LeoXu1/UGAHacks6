@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class SelectionWheel extends JPanel {
 
 	Wheel _wheel;
-	Tick _tick;
+	Tick tick;
 
 	@Override
 	public void setBounds(int x, int y, int width, int height) {
@@ -17,8 +17,8 @@ public class SelectionWheel extends JPanel {
 		 * Adjust the bounds of the wheel and tick based on tick width.
 		 */
 		super.setBounds(x, y, width, height);
-		_wheel.setBounds(0, 0, width - _tick.getTickWidth(), height);
-		_tick.setBounds(width - _tick.getTickWidth(), 0, _tick.getTickWidth(), height);
+		_wheel.setBounds(0, 0, width - tick.getTickWidth(), height);
+		tick.setBounds(width - tick.getTickWidth(), 0, tick.getTickWidth(), height);
 	}
 
 	public void hasBorders(boolean borders) {
@@ -153,14 +153,14 @@ public class SelectionWheel extends JPanel {
 		/*
 		 * Get tick width.
 		 */
-		return _tick.getTickWidth();
+		return tick.getTickWidth();
 	}
 
 	public void setTickWidth(int width) {
 		/*
 		 * Set tick width. Resets the bounds of both tick and wheel.
 		 */
-		_tick.setTickWidth(width);
+		tick.setTickWidth(width);
 		this.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	}
 
@@ -168,28 +168,28 @@ public class SelectionWheel extends JPanel {
 		/*
 		 * Get tick height.
 		 */
-		return _tick.getTickHeight();
+		return tick.getTickHeight();
 	}
 
 	public void setTickHeight(int height) {
 		/*
 		 * Set tick height.
 		 */
-		_tick.setTickHeight(height);
+		tick.setTickHeight(height);
 	}
 
 	public Polygon getTickPolygon() {
 		/*
 		 * Get tick polygon.
 		 */
-		return _tick.getPolygon();
+		return tick.getPolygon();
 	}
 
 	public void setTickPolygon(Polygon polygon) {
 		/*
 		 * Set tick polygon.
 		 */
-		_tick.setPolygon(polygon);
+		tick.setPolygon(polygon);
 	}
 
 	public SelectionWheel(ArrayList<String> listOfStrings) throws Exception {
@@ -198,11 +198,11 @@ public class SelectionWheel extends JPanel {
 		 */
 		_wheel = new Wheel(listOfStrings);
 		_wheel.setLayout(null);
-		_tick = new Tick();
-		_tick.setLayout(null);
+		tick = new Tick();
+		tick.setLayout(null);
 		this.setLayout(null);
 		this.add(_wheel);
-		this.add(_tick);
+		this.add(tick);
 	}
 
 	public void spinStartAsync(double speed, int direction, double deceleration) throws Exception {
