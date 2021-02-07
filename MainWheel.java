@@ -123,20 +123,20 @@ public class MainWheel {
 		JLabel lblsp = new JLabel("(speed)");
 		JButton btnSpin = new JButton("Spin");
 
-		lbl1.setBounds(720, 10, 100, 20);
-		lblsel.setBounds(830, 10, 150, 20);
-		lbl2.setBounds(720, 30, 100, 20);
-		lblang.setBounds(830, 30, 150, 20);
-		lbl3.setBounds(720, 50, 100, 20);
-		lblsp.setBounds(830, 50, 150, 20);
+//		lbl1.setBounds(720, 10, 100, 20);
+//		lblsel.setBounds(830, 10, 150, 20);
+//		lbl2.setBounds(720, 30, 100, 20);
+//		lblang.setBounds(830, 30, 150, 20);
+//		lbl3.setBounds(720, 50, 100, 20);
+//		lblsp.setBounds(830, 50, 150, 20);
 		btnSpin.setBounds(520, 290, 100, 20);
 		frame.add(wheel);
-		frame.add(lbl1);
-		frame.add(lblsel);
-		frame.add(lbl2);
-		frame.add(lblang);
-		frame.add(lbl3);
-		frame.add(lblsp);
+//		frame.add(lbl1);
+//		frame.add(lblsel);
+//		frame.add(lbl2);
+//		frame.add(lblang);
+//		frame.add(lbl3);
+//		frame.add(lblsp);
 		frame.add(btnSpin);
 		frame.setSize(width, height);
 		frame.setLayout(null);
@@ -186,7 +186,7 @@ public class MainWheel {
 			}
 			lblsp.setText(Double.toString(wheel.getSpinSpeed()));
 			// show selection
-			JOptionPane.showMessageDialog(frame, "Selection: " + wheel.getSelectedString());
+			JOptionPane.showMessageDialog(frame, "Activity: " + wheel.getSelectedString());
 		}
 	}
 
