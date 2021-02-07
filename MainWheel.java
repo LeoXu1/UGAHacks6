@@ -43,22 +43,6 @@ public class MainWheel {
 			count++;
 		}
 
-//		list.add("Recycle");
-//		list.add("Take the bus");
-//		list.add("Text a friend");
-//		list.add("Call your grandparents");
-//		list.add("Read a book");
-//		list.add("Take a walk");
-//		list.add("Ride a bike");
-//		list.add("Pick up trash");
-//		list.add("Eat healthy");
-//		list.add("Take a shorter shower");
-//		list.add("Go to bed early");
-//		list.add("Go vegan");
-//		list.add("Go vegetarian");
-//		list.add("Use reusable bags");
-//		list.add("Use reusable straws");
-
 		Wheel wheel = new Wheel(list);
 		wheel.hasBorders(true);
 		wheel.setBounds(100, 100, 400, 400);
@@ -102,7 +86,7 @@ public class MainWheel {
 				// do everything here...
 				try {
 					if (wheel.isSpinning() == false)
-						wheel.spinStartAsync(180, 1, -5);
+						wheel.spinStartAsync(180, 3, -40);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
