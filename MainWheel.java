@@ -1,193 +1,221 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Polygon;
 import java.util.ArrayList;
-import java.util.Random;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-public class MainWheel {
+@SuppressWarnings("serial")
+public class SelectionWheel extends JPanel {
 
-	public static void main(String[] args) throws Exception {
+	Wheel _wheel;
+	Tick _tick;
 
-		Random random = new Random();
-
-		int width = 1000, height = 1000;
-
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		ArrayList<String> endList1 = new ArrayList<String>();
-		endList1.add("Recycle");
-		endList1.add("Take the bus");
-		endList1.add("Text a friend");
-		endList1.add("Call your grandparents");
-		endList1.add("Read a book");
-		endList1.add("Take a walk");
-		ArrayList<String> endList2 = new ArrayList<String>();
-		endList2.add("Use reusable straws");
-		endList2.add("Pick up trash");
-		endList2.add("Eat healthy");
-		endList2.add("Take a shorter shower");
-		endList2.add("Go to bed early");
-		endList2.add("Go vegan");
-		ArrayList<String> endList3 = new ArrayList<String>();
-		endList3.add("Go vegetarian");
-		endList3.add("Use reusable bags");
-		endList3.add("Grow a plant");
-		endList3.add("Meditate");
-		endList3.add("Volunteer");
-		endList3.add("Ride a bike");
-		ArrayList<String> endList4 = new ArrayList<String>();
-		endList4.add("Journal");
-		endList4.add("Discover a new hobby");
-		endList4.add("Make a craft out of trash");
-		endList4.add("Donate to a charity");
-		endList4.add("Cook a new meal");
-		endList4.add("Clean");
-		ArrayList<String> endList5 = new ArrayList<String>();
-		endList5.add("Encourage someone");
-		endList5.add("Unplug nonessential devices");
-		endList5.add("Dance");
-		endList5.add("Write a letter");
-		endList5.add("Give a gift");
-		endList5.add("Go plastic-free");
-		ArrayList<String> endList6 = new ArrayList<String>();
-		endList6.add("Sing");
-		endList6.add("Turn off your tv");
-		endList6.add("Meet someone new");
-		endList6.add("Call a relative");
-		endList6.add("Give a gift");
-		endList6.add("Draw");
-
-		ArrayList<String> list = new ArrayList<String>();
-		int count = 0;
-
-		int listChooser = random.nextInt(6);
-		switch (listChooser) {
-		case 1:
-			while (count < 6) {
-				list.add(endList1.get(random.nextInt(5)));
-				count++;
-			}
-			break;
-		case 2:
-			while (count < 6) {
-				list.add(endList2.get(random.nextInt(5)));
-				count++;
-			}
-			break;
-		case 3:
-			while (count < 6) {
-				list.add(endList3.get(random.nextInt(5)));
-				count++;
-			}
-			break;
-		case 4:
-			while (count < 6) {
-				list.add(endList4.get(random.nextInt(5)));
-				count++;
-			}
-			break;
-		case 5:
-			while (count < 6) {
-				list.add(endList5.get(random.nextInt(5)));
-				count++;
-			}
-			break;
-		case 6:
-			while (count < 6) {
-				list.add(endList6.get(random.nextInt(5)));
-				count++;
-			}
-			break;
-		default:
-			while (count < 6) {
-				list.add(endList1.get(random.nextInt(5)));
-				count++;
-			}
-			break;
-		}
-
-		Wheel wheel = new Wheel(list);
-		wheel.hasBorders(true);
-		wheel.setBounds(100, 100, 400, 400);
-
-		JLabel lbl1 = new JLabel("Activity: ");
-		JLabel lbl2 = new JLabel("Angle: ");
-		JLabel lbl3 = new JLabel("Speed: ");
-		JLabel lblsel = new JLabel("(activity)");
-		JLabel lblang = new JLabel("(angle)");
-		JLabel lblsp = new JLabel("(speed)");
-		JButton btnSpin = new JButton("Spin");
-
-//		lbl1.setBounds(720, 10, 100, 20);
-//		lblsel.setBounds(830, 10, 150, 20);
-//		lbl2.setBounds(720, 30, 100, 20);
-//		lblang.setBounds(830, 30, 150, 20);
-//		lbl3.setBounds(720, 50, 100, 20);
-//		lblsp.setBounds(830, 50, 150, 20);
-		btnSpin.setBounds(520, 290, 100, 20);
-		frame.add(wheel);
-//		frame.add(lbl1);
-//		frame.add(lblsel);
-//		frame.add(lbl2);
-//		frame.add(lblang);
-//		frame.add(lbl3);
-//		frame.add(lblsp);
-		frame.add(btnSpin);
-		frame.setSize(width, height);
-		frame.setLayout(null);
-		frame.setVisible(true);
-
-		lblsel.setText(wheel.getSelectedString());
-		lblang.setText(Double.toString(wheel.getRotationAngle()));
-		lblsp.setText(Double.toString(wheel.getSpinSpeed()));
-
-		// wheel.setShape(Wheel.Shape.UMBRELLA);
-
-		btnSpin.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				try {
-					if (wheel.isSpinning() == false)
-						wheel.spinStartAsync(180, 3, -40);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-		while (true) {
-			// wait for action
-			while (true) {
-				lblsel.setText(wheel.getSelectedString());
-				lblang.setText(Double.toString(wheel.getRotationAngle()));
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				if (wheel.isSpinning())
-					break;
-			}
-			// while spinning
-			while (wheel.isSpinning()) {
-				lblsel.setText(wheel.getSelectedString());
-				lblang.setText(Double.toString(wheel.getRotationAngle()));
-				lblsp.setText(Double.toString(wheel.getSpinSpeed()));
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			lblsp.setText(Double.toString(wheel.getSpinSpeed()));
-			// show selection
-			JOptionPane.showMessageDialog(frame, "Activity: " + wheel.getSelectedString());
-		}
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
+		/*
+		 * Adjust the bounds of the wheel and tick based on tick width.
+		 */
+		super.setBounds(x, y, width, height);
+		_wheel.setBounds(0, 0, width - _tick.getTickWidth(), height);
+		_tick.setBounds(width - _tick.getTickWidth(), 0, _tick.getTickWidth(), height);
 	}
 
+	public void hasBorders(boolean borders) {
+		/*
+		 * Check if the wheel borders are on.
+		 */
+		_wheel.hasBorders(borders);
+	}
+
+	public int getRadius() {
+		/*
+		 * Get radius of the wheel.
+		 */
+		return _wheel.getRadius();
+	}
+
+	public double getRotationAngle() {
+		/*
+		 * Get current rotation angle of the wheel.
+		 */
+		return _wheel.getRotationAngle();
+	}
+
+	public void setRotationAngle(double rotationAngle) {
+		/*
+		 * Set current rotation angle of the wheel.
+		 */
+		_wheel.setRotationAngle(rotationAngle);
+	}
+
+	public Font getWheelFont() {
+		/*
+		 * Get current font of the wheel.
+		 */
+		return _wheel.getFont();
+	}
+
+	public void setWheelFont(Font font) {
+		/*
+		 * Set current font of the wheel.
+		 */
+		super.setFont(font);
+		_wheel.setFont(font);
+	}
+
+	public ArrayList<String> getListOfStrings() {
+		/*
+		 * Get the list of strings for the wheel.
+		 */
+		return _wheel.getListOfStrings();
+	}
+
+	public void setListOfStrings(ArrayList<String> list) throws Exception {
+		/*
+		 * Set the list of strings for the wheel.
+		 */
+		_wheel.setListOfStrings(list);
+	}
+
+	public double getSpinSpeed() {
+		/*
+		 * Get current spin speed of the wheel.
+		 */
+		return _wheel.getSpinSpeed();
+	}
+
+	public double getMaxSpinSpeed() {
+		/*
+		 * Get current spin speed limit of the wheel.
+		 */
+		return _wheel.getMaxSpinSpeed();
+	}
+
+	public void setMaxSpinSpeed(double speed) {
+		/*
+		 * Set current spin speed limit of the wheel.
+		 */
+		_wheel.setMaxSpinSpeed(speed);
+	}
+
+	public double getSpinDeceleration() {
+		return _wheel.getSpinDeceleration();
+	}
+
+	public void setSpinDeceleration(double deceleration) throws Exception {
+		_wheel.setSpinDeceleration(deceleration);
+	}
+
+	public ArrayList<Color> getColorScheme() {
+		/*
+		 * Get color scheme of the wheel.
+		 */
+		return _wheel.getColorScheme();
+	}
+
+	public void setColorScheme(ArrayList<Color> colors) {
+		/*
+		 * Set color scheme of the wheel.
+		 */
+		_wheel.setColorScheme(colors);
+	}
+
+	public void addColor(Color color) {
+		/*
+		 * Add new color to the color scheme of the wheel.
+		 */
+		_wheel.addColor(color);
+	}
+
+	public String getSelectedString() {
+		/*
+		 * Get current string selection for the wheel.
+		 */
+		return _wheel.getSelectedString();
+	}
+
+	public boolean isSpinning() {
+		/*
+		 * Check if wheel is spinning.
+		 */
+		return _wheel.isSpinning();
+	}
+
+	public void setShape(Wheel.Shape shape) {
+		/*
+		 * Set shape of the wheel.
+		 */
+		_wheel.setShape(shape);
+	}
+
+	public double getTickWidth() {
+		/*
+		 * Get tick width.
+		 */
+		return _tick.getTickWidth();
+	}
+
+	public void setTickWidth(int width) {
+		/*
+		 * Set tick width. Resets the bounds of both tick and wheel.
+		 */
+		_tick.setTickWidth(width);
+		this.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+	}
+
+	public double getTickHeight() {
+		/*
+		 * Get tick height.
+		 */
+		return _tick.getTickHeight();
+	}
+
+	public void setTickHeight(int height) {
+		/*
+		 * Set tick height.
+		 */
+		_tick.setTickHeight(height);
+	}
+
+	public Polygon getTickPolygon() {
+		/*
+		 * Get tick polygon.
+		 */
+		return _tick.getPolygon();
+	}
+
+	public void setTickPolygon(Polygon polygon) {
+		/*
+		 * Set tick polygon.
+		 */
+		_tick.setPolygon(polygon);
+	}
+
+	public SelectionWheel(ArrayList<String> listOfStrings) throws Exception {
+		/*
+		 * Constructor - initializes tick and wheel.
+		 */
+		_wheel = new Wheel(listOfStrings);
+		_wheel.setLayout(null);
+		_tick = new Tick();
+		_tick.setLayout(null);
+		this.setLayout(null);
+		this.add(_wheel);
+		this.add(_tick);
+	}
+
+	public void spinStartAsync(double speed, int direction, double deceleration) throws Exception {
+		/*
+		 * Start async wheel spin.
+		 */
+		_wheel.spinStartAsync(speed, direction, deceleration);
+	}
+
+	public void spinStop() {
+		/*
+		 * Stop spinning.
+		 */
+		_wheel.spinStop();
+	}
 }
