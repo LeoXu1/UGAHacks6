@@ -10,11 +10,18 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.base {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-  max-width: 700px;
+  min-width: 750px;
   margin: 30px auto;
   overflow: auto;
-  min-height: 300px;
+  min-height: 1000px;
+  max-height: 1000px;
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
@@ -71,6 +78,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-form {
