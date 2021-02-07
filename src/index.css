@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-  max-width: 500px;
+  max-width: 700px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
@@ -55,6 +55,8 @@ body {
 }
 
 .task {
+  display: flex;
+  justify-content: space-between;
   background: #f4f4f4;
   margin: 5px;
   padding: 10px 20px;
@@ -65,7 +67,7 @@ body {
   border-left: 5px solid green;
 }
 
-.task h3 {
+.task p {
   display: flex;
   align-items: center;
   justify-content: space-between;
